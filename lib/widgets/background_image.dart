@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class BackgroundImage extends StatelessWidget {
   final String imageUrl;
@@ -8,16 +7,11 @@ class BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final double screenWidth = MediaQuery.of(context).size.width;
-
-        return Image.network(
-          imageUrl,
-          width: screenWidth, // 100vw
-          fit: BoxFit.cover, // height auto
-        );
-      },
+    return Positioned.fill(
+      child: Image.network(
+        imageUrl,
+        fit: BoxFit.cover, // Ensures the image covers the entire space
+      ),
     );
   }
 }

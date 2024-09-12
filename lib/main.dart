@@ -16,8 +16,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const Scaffold(
-        body: Center(
-          child: BackgroundImage(imageUrl: 'images/WindTurbines.jpg'),
+        body: Stack(
+          children: [
+            BackgroundImage(
+                imageUrl:
+                    'images/WindTurbines.jpg'), // Credit: Pexels, 哲聖 林, Wind Turbines on the Coast of a Sea
+          ],
         ),
       ),
     );
