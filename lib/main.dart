@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/background_image.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const Scaffold(
         body: Center(
-          child: Text(''),
+          child: BackgroundImage(imageUrl: 'images/WindTurbines.jpg'),
         ),
       ),
     );
