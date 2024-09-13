@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/background_image.dart';
+import 'widgets/nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
             BackgroundImage(
                 imageUrl:
                     'images/WindTurbines.jpg'), // Credit: Pexels, 哲聖 林, Wind Turbines on the Coast of a Sea
+            NavBar(),
           ],
         ),
       ),
