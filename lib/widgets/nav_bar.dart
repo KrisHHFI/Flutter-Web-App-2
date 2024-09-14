@@ -15,9 +15,9 @@ class NavBar extends StatelessWidget {
     ];
 
     // Determine the logo image based on screen width
-    String logo = MediaQuery.of(context).size.width < 600
-        ? 'images/XLogo.png'
-        : 'images/XLogoCompany.png';
+    bool isSmallScreen = MediaQuery.of(context).size.width < 600;
+    String logo =
+        isSmallScreen ? 'images/XLogo.png' : 'images/XLogoCompany.png';
 
     return Positioned(
       top: 0,
@@ -34,19 +34,26 @@ class NavBar extends StatelessWidget {
               height: 30,
               fit: BoxFit.contain,
             ),
-            Row(
-              children: navItems.map((item) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width *
-                          0.02), // 2vw padding
-                  child: Text(
-                    item,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                );
-              }).toList(),
-            ),
+            if (isSmallScreen)
+              Image.network(
+                'images/Menu.png',
+                height: 30,
+                fit: BoxFit.contain,
+              )
+            else
+              Row(
+                children: navItems.map((item) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width *
+                            0.02), // 2vw padding
+                    child: Text(
+                      item,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  );
+                }).toList(),
+              ),
           ],
         ),
       ),
