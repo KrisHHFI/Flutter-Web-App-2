@@ -14,6 +14,11 @@ class NavBar extends StatelessWidget {
       'Contact'
     ];
 
+    // Determine the logo image based on screen width
+    String logo = MediaQuery.of(context).size.width < 600
+        ? 'images/XLogo.png'
+        : 'images/XLogoCompany.png';
+
     return Positioned(
       top: 0,
       left: 0,
@@ -25,7 +30,7 @@ class NavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.network(
-              'images/Logo.png',
+              logo,
               height: 30,
               fit: BoxFit.contain,
             ),
