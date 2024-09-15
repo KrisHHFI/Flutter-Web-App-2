@@ -61,7 +61,7 @@ class _NavBarState extends State<NavBar> {
         children: [
           Container(
             padding: const EdgeInsets.all(16.0),
-            color: Colors.black,
+            color: const Color.fromRGBO(0, 0, 0, 0.2),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -107,41 +107,50 @@ class _NavBarState extends State<NavBar> {
             Container(
               width: double.infinity,
               height: MediaQuery.of(context).size.height, // Full height
-              color: Colors.black, // Darker background for overlay effect
+              color: const Color.fromRGBO(
+                  0, 0, 0, 0.2), // Darker background for overlay effect
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   // Navigation Links
-                  ...navItems.map((item) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text(
-                        item,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize:
-                              24, // Larger font size for better visibility
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                  const SizedBox(height: 40), // Space between links and icons
-                  // Social Media Icons
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: socialIcons.map((social) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: GestureDetector(
-                          onTap: () => _launchURL(social['url']!),
-                          child: Image.network(
-                            social['icon']!,
-                            height: 30,
-                            fit: BoxFit.contain,
+                  Column(
+                    children: [
+                      ...navItems.map((item) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize:
+                                  24, // Larger font size for better visibility
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
+                        );
+                      }).toList(),
+                      SizedBox(
+                          height: 100), // Additional space before social icons
+                    ],
+                  ),
+                  // Social Media Icons
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: socialIcons.map((social) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                          child: GestureDetector(
+                            onTap: () => _launchURL(social['url']!),
+                            child: Image.network(
+                              social['icon']!,
+                              height: 30,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ],
               ),
