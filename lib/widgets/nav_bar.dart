@@ -5,10 +5,10 @@ class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
   @override
-  _NavBarState createState() => _NavBarState();
+  NavBarState createState() => NavBarState();
 }
 
-class _NavBarState extends State<NavBar> {
+class NavBarState extends State<NavBar> {
   // Track whether the menu is expanded or not
   bool isMenuOpen = false;
 
@@ -39,8 +39,10 @@ class _NavBarState extends State<NavBar> {
 
   // Function to launch URL in a new tab
   Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, webOnlyWindowName: '_blank'); // Open in a new tab
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri,
+          mode: LaunchMode.externalApplication); // Open in a new tab
     } else {
       throw 'Could not launch $url';
     }
@@ -72,29 +74,40 @@ class _NavBarState extends State<NavBar> {
                 ),
                 if (isSmallScreen)
                   // Hamburger menu icon
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        // Toggle menu visibility when tapped
-                        isMenuOpen = !isMenuOpen;
-                      });
-                    },
-                    child: Image.network(
-                      'images/Menu.png',
-                      height: 30,
-                      fit: BoxFit.contain,
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          // Toggle menu visibility when tapped
+                          isMenuOpen = !isMenuOpen;
+                        });
+                      },
+                      child: Image.network(
+                        'images/Menu.png',
+                        height: 30,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   )
                 else
                   Row(
                     children: navItems.map((item) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.of(context).size.width *
-                                0.02), // 2vw padding
-                        child: Text(
-                          item,
-                          style: const TextStyle(color: Colors.white),
+                      return MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: MediaQuery.of(context).size.width *
+                                  0.02), // 2vw padding
+                          child: GestureDetector(
+                            onTap: () {
+                              // Handle navigation item tap if needed
+                            },
+                            child: Text(
+                              item,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          ),
                         ),
                       );
                     }).toList(),
@@ -116,19 +129,27 @@ class _NavBarState extends State<NavBar> {
                   Column(
                     children: [
                       ...navItems.map((item) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: Text(
-                            item,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  24, // Larger font size for better visibility
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Handle navigation item tap if needed
+                              },
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize:
+                                      24, // Larger font size for better visibility
+                                ),
+                              ),
                             ),
                           ),
                         );
-                      }).toList(),
-                      SizedBox(
+                      }),
+                      const SizedBox(
                           height: 100), // Additional space before social icons
                     ],
                   ),
@@ -138,14 +159,18 @@ class _NavBarState extends State<NavBar> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: socialIcons.map((social) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                          child: GestureDetector(
-                            onTap: () => _launchURL(social['url']!),
-                            child: Image.network(
-                              social['icon']!,
-                              height: 30,
-                              fit: BoxFit.contain,
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 30.0),
+                            child: GestureDetector(
+                              onTap: () => _launchURL(social['url']!),
+                              child: Image.network(
+                                social['icon']!,
+                                height: 30,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         );
