@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -19,6 +20,31 @@ class _NavBarState extends State<NavBar> {
     'References',
     'Contact'
   ];
+
+  // Define the social media icon paths and URLs in a map
+  final List<Map<String, String>> socialIcons = [
+    {
+      'icon': 'images/CameraIconWhite.png',
+      'url': 'https://www.shutterstock.com/g/Kristopher+Pepper?rid=263519982',
+    },
+    {
+      'icon': 'images/GitHubWhite.png',
+      'url': 'https://github.com/KrisHHFI',
+    },
+    {
+      'icon': 'images/LinkedInWhite.png',
+      'url': 'https://www.linkedin.com/in/kristopher-pepper-824184136/',
+    },
+  ];
+
+  // Function to launch URL in a new tab
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url, webOnlyWindowName: '_blank'); // Open in a new tab
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,19 +109,41 @@ class _NavBarState extends State<NavBar> {
               height: MediaQuery.of(context).size.height, // Full height
               color: Colors.black, // Darker background for overlay effect
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: navItems.map((item) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: Text(
-                      item,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 24, // Larger font size for better visibility
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  // Navigation Links
+                  ...navItems.map((item) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: Text(
+                        item,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize:
+                              24, // Larger font size for better visibility
+                        ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                  const SizedBox(height: 40), // Space between links and icons
+                  // Social Media Icons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: socialIcons.map((social) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: GestureDetector(
+                          onTap: () => _launchURL(social['url']!),
+                          child: Image.network(
+                            social['icon']!,
+                            height: 30,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                ],
               ),
             ),
         ],
