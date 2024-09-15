@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 import '../constants.dart'; // Import the constants file
+import '../provider/page_state.dart'; // Update import path
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -26,6 +28,8 @@ class NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final pageState = Provider.of<PageState>(context);
+
     // Determine the logo image based on screen width
     bool isSmallScreen = MediaQuery.of(context).size.width < 600;
     String logo =
@@ -69,6 +73,7 @@ class NavBarState extends State<NavBar> {
                 else
                   Row(
                     children: navItems.map((item) {
+                      bool isActive = pageState.activePage == item;
                       return MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: Padding(
@@ -77,11 +82,31 @@ class NavBarState extends State<NavBar> {
                                   0.02), // 2vw padding
                           child: GestureDetector(
                             onTap: () {
+                              pageState.setActivePage(item);
                               // Handle navigation item tap if needed
                             },
-                            child: Text(
-                              item,
-                              style: const TextStyle(color: Colors.white),
+                            child: Stack(
+                              children: [
+                                // The underline
+                                if (isActive)
+                                  Positioned(
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    child: Container(
+                                      height: 2,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                // The text
+                                Text(
+                                  item,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -105,21 +130,38 @@ class NavBarState extends State<NavBar> {
                   Column(
                     children: [
                       ...navItems.map((item) {
+                        bool isActive = pageState.activePage == item;
                         return MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: GestureDetector(
                               onTap: () {
+                                pageState.setActivePage(item);
                                 // Handle navigation item tap if needed
                               },
-                              child: Text(
-                                item,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize:
-                                      24, // Larger font size for better visibility
-                                ),
+                              child: Stack(
+                                children: [
+                                  // The underline
+                                  if (isActive)
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Container(
+                                        height: 2,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  // The text
+                                  Text(
+                                    item,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
