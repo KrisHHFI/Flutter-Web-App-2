@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../constants.dart'; // Import the constants file
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -11,31 +12,6 @@ class NavBar extends StatefulWidget {
 class NavBarState extends State<NavBar> {
   // Track whether the menu is expanded or not
   bool isMenuOpen = false;
-
-  // Define the nav items in a list
-  final List<String> navItems = [
-    'Home',
-    'Company',
-    'Services',
-    'References',
-    'Contact'
-  ];
-
-  // Define the social media icon paths and URLs in a map
-  final List<Map<String, String>> socialIcons = [
-    {
-      'icon': 'images/CameraIconWhite.png',
-      'url': 'https://www.shutterstock.com/g/Kristopher+Pepper?rid=263519982',
-    },
-    {
-      'icon': 'images/GitHubWhite.png',
-      'url': 'https://github.com/KrisHHFI',
-    },
-    {
-      'icon': 'images/LinkedInWhite.png',
-      'url': 'https://www.linkedin.com/in/kristopher-pepper-824184136/',
-    },
-  ];
 
   // Function to launch URL in a new tab
   Future<void> _launchURL(String url) async {
