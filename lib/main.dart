@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'widgets/background_image.dart';
 import 'widgets/nav_bar.dart';
-import 'provider/page_state.dart'; // Update import path
+import 'provider/page_state.dart';
 
 void main() {
   runApp(
