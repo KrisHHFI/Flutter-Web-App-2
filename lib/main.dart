@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'widgets/background_image.dart';
 import 'widgets/nav_bar.dart';
 import 'provider/page_state.dart';
+import './constants.dart';
 
 void main() {
   runApp(
@@ -18,21 +19,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Company X',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Scaffold(
-        body: Stack(
-          children: [
-            BackgroundImage(
-                imageUrl:
-                    'images/WindTurbines.jpg'), // Credit: Pexels, 哲聖 林, Wind Turbines on the Coast of a Sea
-            NavBar(),
-          ],
-        ),
-      ),
+    return Consumer<PageState>(
+      builder: (context, pageState, child) {
+        // Find the active page from the pageItems list
+        final activePage = pageItems.firstWhere(
+          (item) => item['title'] == pageState.activePage,
+          orElse: () => pageItems[0], // Default to Home page
+        );
+
+        return MaterialApp(
+          title: 'Company X',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: Scaffold(
+            body: Stack(
+              children: [
+                BackgroundImage(
+                  imageUrl: activePage['imageUrl']!,
+                ),
+                const NavBar(),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

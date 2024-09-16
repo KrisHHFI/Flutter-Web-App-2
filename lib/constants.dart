@@ -1,11 +1,28 @@
-import 'package:flutter/material.dart';
-
-final List<String> navItems = [
-  'Home',
-  'Company',
-  'Services',
-  'References',
-  'Contact',
+final List<Map<String, String>> pageItems = [
+  {
+    'title': 'Home',
+    'imageUrl':
+        'images/WindTurbinesFarmField.jpg', // Credit: Pexels, Pixabay, Scenic View of Agricultural Field Against Sky during Sunset
+  },
+  {
+    'title': 'Company',
+    'imageUrl':
+        'images/WindTurbinesShore.jpg', // Credit: Pexels, 哲聖 林, Wind Turbines on the Coast of a Sea
+  },
+  {
+    'title': 'Services',
+    'imageUrl': 'images/WIndTurbineMaintenance.jpg',
+  },
+  {
+    'title': 'References',
+    'imageUrl':
+        'images/Rooftops.jpg', // Credit: Pexels, alleksana, Aerial Shot of Buildings
+  },
+  {
+    'title': 'Contact',
+    'imageUrl':
+        'images/Headquarters.jpg', // Credit: Pexels, Pixabay, White 15120 Building
+  },
 ];
 
 final List<Map<String, String>> socialIcons = [

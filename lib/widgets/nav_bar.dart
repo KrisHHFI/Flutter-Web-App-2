@@ -83,8 +83,9 @@ class NavBarState extends State<NavBar> {
                     )
                   else
                     Row(
-                      children: navItems.map((item) {
-                        bool isActive = pageState.activePage == item;
+                      children: pageItems.map((item) {
+                        // Access the 'title' field of each page item
+                        bool isActive = pageState.activePage == item['title'];
                         return MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: Padding(
@@ -93,7 +94,7 @@ class NavBarState extends State<NavBar> {
                                     0.02), // 2vw padding
                             child: GestureDetector(
                               onTap: () {
-                                pageState.setActivePage(item);
+                                pageState.setActivePage(item['title']!);
                                 // Handle navigation item tap if needed
                               },
                               child: Stack(
@@ -111,7 +112,7 @@ class NavBarState extends State<NavBar> {
                                     ),
                                   // The text
                                   Text(
-                                    item,
+                                    item['title']!,
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 16,
@@ -137,8 +138,9 @@ class NavBarState extends State<NavBar> {
                     children: [
                       // Navigation Links
                       Column(
-                        children: navItems.map((item) {
-                          bool isActive = pageState.activePage == item;
+                        children: pageItems.map((item) {
+                          // Access the 'title' field of each page item
+                          bool isActive = pageState.activePage == item['title'];
                           return MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: Padding(
@@ -146,7 +148,7 @@ class NavBarState extends State<NavBar> {
                                   const EdgeInsets.symmetric(vertical: 16.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  pageState.setActivePage(item);
+                                  pageState.setActivePage(item['title']!);
                                 },
                                 child: Stack(
                                   children: [
@@ -163,7 +165,7 @@ class NavBarState extends State<NavBar> {
                                       ),
                                     // The text
                                     Text(
-                                      item,
+                                      item['title']!,
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 24, // Larger font size
