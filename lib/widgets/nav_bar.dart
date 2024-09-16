@@ -50,56 +50,103 @@ class NavBarState extends State<NavBar> {
             ),
           ),
         // Main content (logo, menu, and navigation items)
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                color: const Color.fromRGBO(0, 0, 0, 0.2),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.network(
-                      logo,
-                      height: 30,
-                      fit: BoxFit.contain,
-                    ),
-                    if (isSmallScreen)
-                      // Hamburger menu icon
-                      MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              // Toggle menu visibility when tapped
-                              isMenuOpen = !isMenuOpen;
-                            });
-                          },
-                          child: Image.network(
-                            'images/Menu.png',
-                            height: 30,
-                            fit: BoxFit.contain,
-                          ),
+        Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              color: const Color.fromRGBO(0, 0, 0, 0.2),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.network(
+                    logo,
+                    height: 30,
+                    fit: BoxFit.contain,
+                  ),
+                  if (isSmallScreen)
+                    // Hamburger menu icon
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            // Toggle menu visibility when tapped
+                            isMenuOpen = !isMenuOpen;
+                          });
+                        },
+                        child: Image.network(
+                          'images/Menu.png',
+                          height: 30,
+                          fit: BoxFit.contain,
                         ),
-                      )
-                    else
-                      Row(
+                      ),
+                    )
+                  else
+                    Row(
+                      children: navItems.map((item) {
+                        bool isActive = pageState.activePage == item;
+                        return MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: MediaQuery.of(context).size.width *
+                                    0.02), // 2vw padding
+                            child: GestureDetector(
+                              onTap: () {
+                                pageState.setActivePage(item);
+                                // Handle navigation item tap if needed
+                              },
+                              child: Stack(
+                                children: [
+                                  // The underline
+                                  if (isActive)
+                                    Positioned(
+                                      bottom: 0,
+                                      left: 0,
+                                      right: 0,
+                                      child: Container(
+                                        height: 2,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  // The text
+                                  Text(
+                                    item,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                ],
+              ),
+            ),
+            // Display the full-screen menu below the NavBar when the menu is open
+            if (isMenuOpen && isSmallScreen)
+              Expanded(
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      // Navigation Links
+                      Column(
                         children: navItems.map((item) {
                           bool isActive = pageState.activePage == item;
                           return MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal:
-                                      MediaQuery.of(context).size.width *
-                                          0.02), // 2vw padding
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
                               child: GestureDetector(
                                 onTap: () {
                                   pageState.setActivePage(item);
-                                  // Handle navigation item tap if needed
                                 },
                                 child: Stack(
                                   children: [
@@ -117,9 +164,9 @@ class NavBarState extends State<NavBar> {
                                     // The text
                                     Text(
                                       item,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 16,
+                                        fontSize: 24, // Larger font size
                                       ),
                                     ),
                                   ],
@@ -129,93 +176,37 @@ class NavBarState extends State<NavBar> {
                           );
                         }).toList(),
                       ),
-                  ],
-                ),
-              ),
-              // Display the full-screen menu below the NavBar when the menu is open
-              if (isMenuOpen && isSmallScreen)
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        // Navigation Links
-                        Column(
-                          children: [
-                            ...navItems.map((item) {
-                              bool isActive = pageState.activePage == item;
-                              return MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 16.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      pageState.setActivePage(item);
-                                    },
-                                    child: Stack(
-                                      children: [
-                                        // The underline
-                                        if (isActive)
-                                          Positioned(
-                                            bottom: 0,
-                                            left: 0,
-                                            right: 0,
-                                            child: Container(
-                                              height: 2,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        // The text
-                                        Text(
-                                          item,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 24, // Larger font size
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                      const SizedBox(
+                          height: 100), // Additional space before social icons
+                      // Social Media Icons
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: socialIcons.map((social) {
+                            return MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 30.0),
+                                child: GestureDetector(
+                                  onTap: () => _launchURL(social['url']!),
+                                  child: Image.network(
+                                    social['icon']!,
+                                    height: 30,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
-                              );
-                            }).toList(),
-                            const SizedBox(
-                                height:
-                                    100), // Additional space before social icons
-                          ],
+                              ),
+                            );
+                          }).toList(),
                         ),
-                        // Social Media Icons
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: socialIcons.map((social) {
-                              return MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30.0),
-                                  child: GestureDetector(
-                                    onTap: () => _launchURL(social['url']!),
-                                    child: Image.network(
-                                      social['icon']!,
-                                      height: 30,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
       ],
     );
