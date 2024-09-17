@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'widgets/background_image.dart';
-import 'widgets/home_page_content.dart';
 import 'widgets/nav_bar.dart';
 import 'provider/page_state.dart';
 import './constants.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
                   imageUrl: activePage['imageUrl']!,
                 ),
                 const NavBar(),
-                const HomePageContent(),
+                if (activePage['widget'] != null) activePage['widget'],
               ],
             ),
           ),

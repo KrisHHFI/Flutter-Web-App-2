@@ -1,27 +1,30 @@
-final List<Map<String, String>> pageItems = [
+import 'widgets/home_page_content.dart';
+
+final List<Map<String, dynamic>> pageItems = [
   {
     'title': 'Home',
-    'imageUrl':
-        'images/WindTurbinesFarmField.jpg', // Credit: Pexels, Pixabay, Scenic View of Agricultural Field Against Sky during Sunset
+    'imageUrl': 'images/WindTurbinesFarmField.jpg',
+    'widget': const HomePageContent(),
   },
   {
     'title': 'Company',
-    'imageUrl':
-        'images/WindTurbinesShore.jpg', // Credit: Pexels, 哲聖 林, Wind Turbines on the Coast of a Sea
+    'imageUrl': 'images/WindTurbinesShore.jpg',
+    'widget': null,
   },
   {
     'title': 'Services',
     'imageUrl': 'images/WIndTurbineMaintenance.jpg',
+    'widget': null,
   },
   {
     'title': 'References',
-    'imageUrl':
-        'images/Rooftops.jpg', // Credit: Pexels, alleksana, Aerial Shot of Buildings
+    'imageUrl': 'images/Rooftops.jpg',
+    'widget': null,
   },
   {
     'title': 'Contact',
-    'imageUrl':
-        'images/Headquarters.jpg', // Credit: Pexels, Pixabay, White 15120 Building
+    'imageUrl': 'images/Headquarters.jpg',
+    'widget': null,
   },
 ];
 
