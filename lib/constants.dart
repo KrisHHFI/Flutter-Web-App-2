@@ -1,4 +1,5 @@
 import 'widgets/home_page_content.dart';
+import 'widgets/company_page_content.dart';
 
 final List<Map<String, dynamic>> pageItems = [
   {
@@ -9,7 +10,7 @@ final List<Map<String, dynamic>> pageItems = [
   {
     'title': 'Company',
     'imageUrl': 'images/WindTurbinesShore.jpg',
-    'widget': null,
+    'widget': const CompanyPageContent(),
   },
   {
     'title': 'Services',

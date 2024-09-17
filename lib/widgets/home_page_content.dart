@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../provider/page_state.dart'; // Ensure correct import
+import '../provider/page_state.dart';
 
 class HomePageContent extends StatelessWidget {
   final String centeredText = "We believe in a better future";
