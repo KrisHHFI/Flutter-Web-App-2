@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../provider/page_state.dart'; // Ensure correct import
 
 class HomePageContent extends StatelessWidget {
   final String centeredText = "We believe in a better future";
@@ -13,17 +15,42 @@ class HomePageContent extends StatelessWidget {
         double fontSize = (constraints.maxWidth * 0.08).clamp(50.0, 70.0);
 
         return Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              centeredText,
-              style: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  centeredText,
+                  style: TextStyle(
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
+              const SizedBox(height: 20), // Space between text and button
+              OutlinedButton(
+                onPressed: () {
+                  // Change the active page to "Company"
+                  Provider.of<PageState>(context, listen: false)
+                      .setActivePage('Company');
+                },
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Colors.white),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 16.0, horizontal: 32.0),
+                ),
+                child: const Text(
+                  'Learn more',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       },
