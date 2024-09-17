@@ -1,5 +1,6 @@
 import 'widgets/home_page_content.dart';
 import 'widgets/company_page_content.dart';
+import 'widgets/services_page_content.dart';
 
 final List<Map<String, dynamic>> pageItems = [
   {
@@ -15,7 +16,7 @@ final List<Map<String, dynamic>> pageItems = [
   {
     'title': 'Services',
     'imageUrl': 'images/WIndTurbineMaintenance.jpg',
-    'widget': null,
+    'widget': const ServicesPageContent(),
   },
   {
     'title': 'References',
