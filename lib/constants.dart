@@ -43,3 +43,22 @@ final List<Map<String, String>> socialIcons = [
     'url': 'https://www.linkedin.com/in/kristopher-pepper-824184136/',
   },
 ];
+
+final List<Map<String, String>> textItems = [
+  {
+    'mainText': '25+',
+    'subText': 'years in business',
+  },
+  {
+    'mainText': '200+',
+    'subText': 'satisfied customers',
+  },
+  {
+    'mainText': '€3.4bn',
+    'subText': 'net sales',
+  },
+  {
+    'mainText': '~6',
+    'subText': 'continents',
+  },
+];

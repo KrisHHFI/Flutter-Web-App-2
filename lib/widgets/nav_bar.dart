@@ -2,8 +2,8 @@ import 'dart:ui'; // Needed for ImageFilter.blur
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
-import '../constants.dart'; // Import the constants file
-import '../provider/page_state.dart'; // Update import path
+import '../constants.dart';
+import '../provider/page_state.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
