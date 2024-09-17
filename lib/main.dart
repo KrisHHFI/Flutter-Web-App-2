@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
                 BackgroundImage(
                   imageUrl: activePage['imageUrl']!,
                 ),
-                const NavBar(),
                 if (activePage['widget'] != null) activePage['widget'],
+                const NavBar(),
               ],
             ),
           ),

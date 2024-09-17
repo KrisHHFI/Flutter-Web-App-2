@@ -13,15 +13,16 @@ class NavBar extends StatefulWidget {
 }
 
 class NavBarState extends State<NavBar> {
-  // Track whether the menu is expanded or not
   bool isMenuOpen = false;
+
+  // To track which item is hovered
+  String? hoveredItem;
 
   // Function to launch URL in a new tab
   Future<void> _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri,
-          mode: LaunchMode.externalApplication); // Open in a new tab
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
       throw 'Could not launch $url';
     }
@@ -30,26 +31,21 @@ class NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     final pageState = Provider.of<PageState>(context);
-
-    // Determine the logo image based on screen width
     bool isSmallScreen = MediaQuery.of(context).size.width < 600;
     String logo =
         isSmallScreen ? 'images/XLogo.png' : 'images/XLogoCompany.png';
 
     return Stack(
       children: [
-        // Blurred background (shown only when menu is open)
         if (isMenuOpen && isSmallScreen)
           Positioned.fill(
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
-                color:
-                    Colors.black.withOpacity(0.2), // Semi-transparent overlay
+                color: Colors.black.withOpacity(0.2),
               ),
             ),
           ),
-        // Main content (logo, menu, and navigation items)
         Column(
           children: [
             Container(
@@ -64,13 +60,11 @@ class NavBarState extends State<NavBar> {
                     fit: BoxFit.contain,
                   ),
                   if (isSmallScreen)
-                    // Hamburger menu icon
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            // Toggle menu visibility when tapped
                             isMenuOpen = !isMenuOpen;
                           });
                         },
@@ -84,23 +78,33 @@ class NavBarState extends State<NavBar> {
                   else
                     Row(
                       children: pageItems.map((item) {
-                        // Access the 'title' field of each page item
                         bool isActive = pageState.activePage == item['title'];
+                        bool isHovered = hoveredItem == item['title'];
                         return MouseRegion(
                           cursor: SystemMouseCursors.click,
+                          onEnter: (_) {
+                            setState(() {
+                              hoveredItem = item['title'];
+                            });
+                          },
+                          onExit: (_) {
+                            setState(() {
+                              hoveredItem = null;
+                            });
+                          },
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: MediaQuery.of(context).size.width *
-                                    0.02), // 2vw padding
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.02,
+                            ),
                             child: GestureDetector(
                               onTap: () {
                                 pageState.setActivePage(item['title']!);
-                                // Handle navigation item tap if needed
                               },
                               child: Stack(
                                 children: [
-                                  // The underline
-                                  if (isActive)
+                                  // The underline when active or hovered
+                                  if (isActive || isHovered)
                                     Positioned(
                                       bottom: 0,
                                       left: 0,
@@ -110,7 +114,6 @@ class NavBarState extends State<NavBar> {
                                         color: Colors.white,
                                       ),
                                     ),
-                                  // The text
                                   Text(
                                     item['title']!,
                                     style: const TextStyle(
@@ -128,7 +131,6 @@ class NavBarState extends State<NavBar> {
                 ],
               ),
             ),
-            // Display the full-screen menu below the NavBar when the menu is open
             if (isMenuOpen && isSmallScreen)
               Expanded(
                 child: Align(
@@ -136,13 +138,22 @@ class NavBarState extends State<NavBar> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Navigation Links
                       Column(
                         children: pageItems.map((item) {
-                          // Access the 'title' field of each page item
                           bool isActive = pageState.activePage == item['title'];
+                          bool isHovered = hoveredItem == item['title'];
                           return MouseRegion(
                             cursor: SystemMouseCursors.click,
+                            onEnter: (_) {
+                              setState(() {
+                                hoveredItem = item['title'];
+                              });
+                            },
+                            onExit: (_) {
+                              setState(() {
+                                hoveredItem = null;
+                              });
+                            },
                             child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 16.0),
@@ -152,8 +163,7 @@ class NavBarState extends State<NavBar> {
                                 },
                                 child: Stack(
                                   children: [
-                                    // The underline
-                                    if (isActive)
+                                    if (isActive || isHovered)
                                       Positioned(
                                         bottom: 0,
                                         left: 0,
@@ -163,12 +173,11 @@ class NavBarState extends State<NavBar> {
                                           color: Colors.white,
                                         ),
                                       ),
-                                    // The text
                                     Text(
                                       item['title']!,
                                       style: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 24, // Larger font size
+                                        fontSize: 24,
                                       ),
                                     ),
                                   ],
@@ -178,9 +187,7 @@ class NavBarState extends State<NavBar> {
                           );
                         }).toList(),
                       ),
-                      const SizedBox(
-                          height: 100), // Additional space before social icons
-                      // Social Media Icons
+                      const SizedBox(height: 100),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: Row(
