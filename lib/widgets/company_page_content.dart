@@ -15,8 +15,7 @@ class CompanyPageContent extends StatelessWidget {
         double subTextfontSize =
             (constraints.maxWidth * 0.02).clamp(15.0, 20.0);
 
-        double horizontalSpacing =
-            constraints.maxWidth * 0.07; // 5% of screen width
+        double horizontalSpacing = constraints.maxWidth * 0.07;
 
         return Center(
           child: Column(
@@ -25,7 +24,7 @@ class CompanyPageContent extends StatelessWidget {
               // Use Wrap to handle overflow and ensure items wrap to a new line
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: horizontalSpacing, // Horizontal space between items
+                spacing: horizontalSpacing,
                 children: [
                   // Map through the textItems list to generate the text widgets
                   ...textItems.map((item) => Container(
