@@ -14,8 +14,10 @@ class ChangePageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double verticalPadding = MediaQuery.of(context).size.height * 0.02;
+
     return Padding(
-      padding: const EdgeInsets.only(top: 30.0),
+      padding: EdgeInsets.only(top: verticalPadding),
       child: OutlinedButton(
         onPressed: () {
           Provider.of<PageState>(context, listen: false)

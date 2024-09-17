@@ -13,22 +13,23 @@ class CompanyPageContent extends StatelessWidget {
             (constraints.maxWidth * 0.02).clamp(50.0, 70.0);
 
         double subTextfontSize =
-            (constraints.maxWidth * 0.02).clamp(15.0, 30.0);
+            (constraints.maxWidth * 0.02).clamp(15.0, 20.0);
+
+        double horizontalSpacing =
+            constraints.maxWidth * 0.07; // 5% of screen width
 
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Use Wrap instead of Row to handle overflow
+              // Use Wrap to handle overflow and ensure items wrap to a new line
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 20.0, // Horizontal space between items
-                runSpacing: 20.0, // Vertical space between lines
+                spacing: horizontalSpacing, // Horizontal space between items
                 children: [
                   // Map through the textItems list to generate the text widgets
                   ...textItems.map((item) => Container(
-                        width: constraints.maxWidth *
-                            0.25, // Adjust width as needed
+                        width: 160, // Fixed width for each text box
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -41,7 +42,6 @@ class CompanyPageContent extends StatelessWidget {
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            const SizedBox(height: 10),
                             Text(
                               item['subText']!,
                               style: TextStyle(
@@ -55,7 +55,6 @@ class CompanyPageContent extends StatelessWidget {
                       )),
                 ],
               ),
-              const SizedBox(height: 20), // Space between text and button
               const ChangePageButton(
                 buttonText: 'Interested?',
                 pageToChangeTo: 'Services',
