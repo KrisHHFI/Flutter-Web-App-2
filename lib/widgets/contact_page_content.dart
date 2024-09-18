@@ -16,7 +16,7 @@ class ContactPageContent extends StatelessWidget {
         double containerWidth = math.max(constraints.maxWidth * 0.3, 350.0);
 
         // Calculate the padding in vh units
-        double verticalPadding = constraints.maxHeight * 0.01;
+        double verticalPadding = constraints.maxHeight * 0.02;
 
         return Center(
           child: Container(
