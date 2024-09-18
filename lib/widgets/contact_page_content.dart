@@ -15,12 +15,14 @@ class ContactPageContent extends StatelessWidget {
         // Set the container width to 30vw or a minimum of 350 pixels
         double containerWidth = math.max(constraints.maxWidth * 0.3, 350.0);
 
+        // Calculate the padding in vh units
+        double verticalPadding = constraints.maxHeight * 0.01;
+
         return Center(
           child: Container(
+            margin: const EdgeInsets.only(top: 50.0), // Add 30px top margin
             width:
                 containerWidth, // Set the width to 30vw or 350px, whichever is larger
-            padding:
-                const EdgeInsets.all(16.0), // Add padding for internal spacing
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +48,9 @@ class ContactPageContent extends StatelessWidget {
                         ),
                         style: const TextStyle(color: Colors.white),
                       ),
-                      const SizedBox(height: 16), // Space between fields
+                      SizedBox(
+                          height:
+                              verticalPadding), // Space between fields (1vh)
 
                       // Email field
                       TextFormField(
@@ -65,7 +69,7 @@ class ContactPageContent extends StatelessWidget {
                         style: const TextStyle(color: Colors.white),
                         keyboardType: TextInputType.emailAddress,
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: verticalPadding),
 
                       // Company field
                       TextFormField(
@@ -83,7 +87,7 @@ class ContactPageContent extends StatelessWidget {
                         ),
                         style: const TextStyle(color: Colors.white),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: verticalPadding),
 
                       // Message field
                       TextFormField(
@@ -102,11 +106,14 @@ class ContactPageContent extends StatelessWidget {
                         style: const TextStyle(color: Colors.white),
                         maxLines: 2, // Multi-line text field for the message
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: verticalPadding),
 
-                      const ChangePageButton(
-                        buttonText: 'Submit',
-                        pageToChangeTo: 'Contact',
+                      // Center the ChangePageButton to respect its width
+                      Center(
+                        child: const ChangePageButton(
+                          buttonText: 'Submit',
+                          pageToChangeTo: 'Contact',
+                        ),
                       ),
                     ],
                   ),
