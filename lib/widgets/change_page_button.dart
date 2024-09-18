@@ -26,26 +26,34 @@ class _ChangePageButtonState extends State<ChangePageButton> {
     return Padding(
       padding: EdgeInsets.only(top: verticalPadding),
       child: MouseRegion(
+        cursor: SystemMouseCursors.click,
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
-        child: OutlinedButton(
-          onPressed: () {
+        child: GestureDetector(
+          onTap: () {
             Provider.of<PageState>(context, listen: false)
                 .setActivePage(widget.pageToChangeTo);
           },
-          style: OutlinedButton.styleFrom(
-            side: BorderSide(color: _isHovered ? Colors.white : Colors.white),
-            backgroundColor: _isHovered ? Colors.white : Colors.transparent,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            width: 225,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: _isHovered ? Colors.white : Colors.white,
+              ),
+              color: _isHovered ? Colors.white : Colors.transparent,
+              borderRadius: BorderRadius.circular(8.0),
+            ),
             padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-          ),
-          child: Text(
-            widget.buttonText,
-            style: TextStyle(
-              fontSize: 20,
-              color: _isHovered
-                  ? Colors.black
-                  : Colors.white, // Text color changes on hover
+                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+            child: Center(
+              child: Text(
+                widget.buttonText,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: _isHovered ? Colors.black : Colors.white,
+                ),
+              ),
             ),
           ),
         ),

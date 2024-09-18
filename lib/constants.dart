@@ -30,6 +30,26 @@ final List<Map<String, dynamic>> pageItems = [
   },
 ];
 
+final List<Map<String, String>> services = [
+  {
+    'imageUrl': 'images/CargoShip.jpg', // Credit: Pexels, Martin Damboldt
+    'text': 'Installation'
+  },
+  {
+    'imageUrl': 'images/Engineers.jpg', // Credit: Pexels, Anamul Rezwan
+    'text': 'Maintenance'
+  },
+  {
+    'imageUrl': 'images/Consultants.jpg', // Credit: Pexels, Sora Shimazaki
+    'text': 'Administration'
+  },
+  {
+    'imageUrl':
+        'images/OfficePeople.jpg', // Credit: Pexels, LinkedIn Sales Navigator
+    'text': 'Support'
+  },
+];
+
 final List<Map<String, String>> socialIcons = [
   {
     'icon': 'images/CameraIconWhite.png',

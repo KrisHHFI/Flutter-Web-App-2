@@ -12,7 +12,6 @@ class ServicesPageContent extends StatelessWidget {
       builder: (context, constraints) {
         double mainTextfontSize =
             (constraints.maxWidth * 0.02).clamp(50.0, 70.0);
-
         double subTextfontSize =
             (constraints.maxWidth * 0.02).clamp(15.0, 20.0);
 
@@ -20,34 +19,17 @@ class ServicesPageContent extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Use Wrap to handle overflow and ensure items wrap to a new line
               Wrap(
                 alignment: WrapAlignment.center,
-                children: const [
-                  CustomCard(
-                    imageUrl:
-                        'images/CargoShip.jpg', // Credit: Pexels, Martin Damboldt, Photography of Ship
-                    text: 'Lorem ipsum dolor sit amet, consectetur.',
-                  ),
-                  CustomCard(
-                    imageUrl:
-                        'images/Engineers.jpg', // Credit: Pexels, Anamul Rezwan, Two Man Holding White Paper
-                    text: 'Duis aute irure dolor in reprehenderit in.',
-                  ),
-                  CustomCard(
-                    imageUrl:
-                        'images/Consultants.jpg', // Credit: Pexels, Sora Shimazaki, Ethnic businessman shaking hand of applicant in office
-                    text: 'Lorem ipsum dolor sit amet, consectetur.',
-                  ),
-                  CustomCard(
-                    imageUrl:
-                        'images/OfficePeople.jpg', // Credit: Pexels, LinkedIn Sales Navigator, Man Pointing Laptop Computer
-                    text: 'Duis aute irure dolor in reprehenderit in.',
-                  ),
-                ],
+                children: services.map((service) {
+                  return CustomCard(
+                    imageUrl: service['imageUrl']!,
+                    text: service['text']!,
+                  );
+                }).toList(),
               ),
               const ChangePageButton(
-                buttonText: 'Check our references',
+                buttonText: 'Want to know more?',
                 pageToChangeTo: 'References',
               ),
             ],
