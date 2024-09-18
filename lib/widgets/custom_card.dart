@@ -14,13 +14,19 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final isSmallScreen = constraints.maxWidth <= 600;
-        final textFontSize = isSmallScreen ? 25.0 : 30.0;
+        double textFontSize = (constraints.maxWidth * 0.012).clamp(12.5, 20.0);
+
+        // Get screen width in vw units (20vw)
+        double vw = MediaQuery.of(context).size.width / 100;
+        double cardSize =
+            (20 * vw).clamp(160.0, double.infinity); // Minimum size of 160
+        double margin = 2 * vw;
+        double padding = 0.25 * vw;
 
         return Container(
-          width: 350, // Set fixed width for each card
-          height: 350,
-          margin: const EdgeInsets.all(16.0),
+          width: cardSize, // Set width with minimum of 160
+          height: cardSize, // Set height with minimum of 160
+          margin: EdgeInsets.all(margin),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.0), // Rounded corners
@@ -44,13 +50,14 @@ class CustomCard extends StatelessWidget {
                 ),
                 child: Image.network(
                   imageUrl,
-                  width: 350,
-                  height: 200,
+                  width: cardSize,
+                  height:
+                      cardSize * 0.75, // Maintain aspect ratio for the image
                   fit: BoxFit.cover,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(padding),
                 child: Text(
                   text,
                   style: TextStyle(

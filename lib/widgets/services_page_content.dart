@@ -16,8 +16,6 @@ class ServicesPageContent extends StatelessWidget {
         double subTextfontSize =
             (constraints.maxWidth * 0.02).clamp(15.0, 20.0);
 
-        double horizontalSpacing = constraints.maxWidth * 0.07;
-
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -25,8 +23,7 @@ class ServicesPageContent extends StatelessWidget {
               // Use Wrap to handle overflow and ensure items wrap to a new line
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: horizontalSpacing,
-                children: [
+                children: const [
                   CustomCard(
                     imageUrl:
                         'images/CargoShip.jpg', // Credit: Pexels, Martin Damboldt, Photography of Ship

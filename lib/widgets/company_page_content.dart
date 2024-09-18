@@ -27,7 +27,7 @@ class CompanyPageContent extends StatelessWidget {
                 spacing: horizontalSpacing,
                 children: [
                   // Map through the textItems list to generate the text widgets
-                  ...textItems.map((item) => Container(
+                  ...textItems.map((item) => SizedBox(
                         width: 160, // Fixed width for each text box
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

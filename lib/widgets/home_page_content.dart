@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../provider/page_state.dart';
 import './change_page_button.dart';
 
 class HomePageContent extends StatelessWidget {
