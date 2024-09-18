@@ -26,7 +26,7 @@ class _CustomCardState extends State<CustomCard> {
         // Get screen width in vw units (20vw)
         double vw = MediaQuery.of(context).size.width / 100;
         double cardSize =
-            (20 * vw).clamp(160.0, double.infinity); // Minimum size of 160
+            (20 * vw).clamp(130.0, double.infinity); // Minimum size of 160
         double margin = 2 * vw;
 
         // Get the current screen width
