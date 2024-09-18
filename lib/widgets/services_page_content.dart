@@ -30,7 +30,7 @@ class ServicesPageContent extends StatelessWidget {
               ),
               const ChangePageButton(
                 buttonText: 'Want to know more?',
-                pageToChangeTo: 'References',
+                pageToChangeTo: 'Contact',
               ),
             ],
           ),

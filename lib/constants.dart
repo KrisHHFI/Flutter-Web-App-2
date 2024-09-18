@@ -5,27 +5,26 @@ import 'widgets/services_page_content.dart';
 final List<Map<String, dynamic>> pageItems = [
   {
     'title': 'Home',
-    'imageUrl': 'images/WindTurbinesFarmField.jpg',
+    'imageUrl':
+        'images/WindTurbinesFarmField.jpg', // Credit: Pexels, Pixabay, Scenic View of Agricultural Field Against Sky during Sunset
     'widget': const HomePageContent(),
   },
   {
     'title': 'Company',
-    'imageUrl': 'images/WindTurbinesShore.jpg',
+    'imageUrl':
+        'images/WindTurbinesShore.jpg', // Credit: Pexels, 哲聖 林, Wind Turbines on the Coast of a Sea
     'widget': const CompanyPageContent(),
   },
   {
     'title': 'Services',
-    'imageUrl': 'images/WIndTurbineMaintenance.jpg',
+    'imageUrl':
+        'images/WIndTurbineMaintenance.jpg', // Credit: Pexels, Pixabay, Wind Turbines in Operation
     'widget': const ServicesPageContent(),
   },
   {
-    'title': 'References',
-    'imageUrl': 'images/Rooftops.jpg',
-    'widget': null,
-  },
-  {
     'title': 'Contact',
-    'imageUrl': 'images/Headquarters.jpg',
+    'imageUrl':
+        'images/Rooftops.jpg', // Credit: Pexels, alleksana, Aerial Shot of Buildings
     'widget': null,
   },
 ];

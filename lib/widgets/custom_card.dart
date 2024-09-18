@@ -29,6 +29,9 @@ class _CustomCardState extends State<CustomCard> {
             (20 * vw).clamp(160.0, double.infinity); // Minimum size of 160
         double margin = 2 * vw;
 
+        // Get the current screen width
+        double screenWidth = MediaQuery.of(context).size.width;
+
         return MouseRegion(
           onEnter: (_) =>
               setState(() => _isHovered = true), // Mouse enters the card
@@ -36,7 +39,11 @@ class _CustomCardState extends State<CustomCard> {
               setState(() => _isHovered = false), // Mouse leaves the card
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 300), // Smooth transition
-            opacity: _isHovered ? 1.0 : 0.75, // 75% transparent unless hovered
+            opacity: screenWidth < 600
+                ? 1.0
+                : (_isHovered
+                    ? 1.0
+                    : 0.75), // Full opacity if screen width < 600
             child: Container(
               width: cardSize,
               height: cardSize,
