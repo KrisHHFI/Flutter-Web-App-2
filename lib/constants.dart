@@ -1,6 +1,7 @@
 import 'widgets/home_page_content.dart';
 import 'widgets/company_page_content.dart';
 import 'widgets/services_page_content.dart';
+import 'widgets/contact_page_content.dart';
 
 final List<Map<String, dynamic>> pageItems = [
   {
@@ -25,7 +26,7 @@ final List<Map<String, dynamic>> pageItems = [
     'title': 'Contact',
     'imageUrl':
         'images/Rooftops.jpg', // Credit: Pexels, alleksana, Aerial Shot of Buildings
-    'widget': null,
+    'widget': const ContactPageContent(),
   },
 ];
 
