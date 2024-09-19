@@ -13,17 +13,19 @@ class ChangePageButton extends StatefulWidget {
   });
 
   @override
-  _ChangePageButtonState createState() => _ChangePageButtonState();
+  ChangePageButtonState createState() => ChangePageButtonState();
 }
 
-class _ChangePageButtonState extends State<ChangePageButton> {
+class ChangePageButtonState extends State<ChangePageButton> {
   bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     double vh = MediaQuery.of(context).size.height / 100;
     double vw = MediaQuery.of(context).size.width / 100;
+    double textFontSize = (3 * vw).clamp(15, 20.0);
     double topPadding = 2 * vh;
+    double buttonVerticalPadding = 2 * vh;
 
     return Padding(
       padding: EdgeInsets.only(top: topPadding),
@@ -38,7 +40,7 @@ class _ChangePageButtonState extends State<ChangePageButton> {
           },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            width: 225,
+            width: 200,
             decoration: BoxDecoration(
               border: Border.all(
                 color: _isHovered ? Colors.white : Colors.white,
@@ -46,13 +48,12 @@ class _ChangePageButtonState extends State<ChangePageButton> {
               color: _isHovered ? Colors.white : Colors.transparent,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+            padding: EdgeInsets.symmetric(vertical: buttonVerticalPadding),
             child: Center(
               child: Text(
                 widget.buttonText,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: textFontSize,
                   color: _isHovered ? Colors.black : Colors.white,
                 ),
               ),

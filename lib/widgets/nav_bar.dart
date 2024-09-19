@@ -160,6 +160,9 @@ class NavBarState extends State<NavBar> {
                               child: GestureDetector(
                                 onTap: () {
                                   pageState.setActivePage(item['title']!);
+                                  setState(() {
+                                    isMenuOpen = false;
+                                  });
                                 },
                                 child: Stack(
                                   children: [
