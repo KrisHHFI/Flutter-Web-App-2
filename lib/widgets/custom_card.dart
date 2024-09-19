@@ -21,16 +21,12 @@ class _CustomCardState extends State<CustomCard> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double textFontSize = (constraints.maxWidth * 0.02).clamp(15, 40.0);
-
-        // Get screen width in vw units (20vw)
-        double vw = MediaQuery.of(context).size.width / 100;
-        double cardSize =
-            (20 * vw).clamp(130.0, double.infinity); // Minimum size of 160
-        double margin = 2 * vw;
-
-        // Get the current screen width
         double screenWidth = MediaQuery.of(context).size.width;
+        double vw = screenWidth / 100;
+        double cardSize = (20 * vw)
+            .clamp(130.0, double.infinity); // Minimum size of 130 pixels
+        double margin = 2 * vw;
+        double textFontSize = (2 * vw).clamp(15, 40.0);
 
         return MouseRegion(
           onEnter: (_) =>
@@ -52,14 +48,6 @@ class _CustomCardState extends State<CustomCard> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0), // Rounded corners
                 border: Border.all(color: Colors.grey, width: 1.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3), // Shadow position
-                  ),
-                ],
               ),
               child: Column(
                 crossAxisAlignment:
@@ -73,8 +61,8 @@ class _CustomCardState extends State<CustomCard> {
                     child: Image.network(
                       widget.imageUrl,
                       width: cardSize,
-                      height: cardSize *
-                          0.75, // Maintain aspect ratio for the image
+                      height:
+                          cardSize * 0.75, // Use 75% of the Containers height
                       fit: BoxFit.cover,
                     ),
                   ),

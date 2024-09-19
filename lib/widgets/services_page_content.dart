@@ -10,11 +10,6 @@ class ServicesPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double mainTextfontSize =
-            (constraints.maxWidth * 0.02).clamp(50.0, 70.0);
-        double subTextfontSize =
-            (constraints.maxWidth * 0.02).clamp(15.0, 20.0);
-
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

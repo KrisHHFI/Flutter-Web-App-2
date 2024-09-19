@@ -10,8 +10,8 @@ class HomePageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Determine a scalable font size with min and max limits
-        double fontSize = (constraints.maxWidth * 0.08).clamp(50.0, 70.0);
+        double vw = MediaQuery.of(context).size.width / 100;
+        double fontSize = (8 * vw).clamp(50.0, 70.0);
 
         return Center(
           child: Column(

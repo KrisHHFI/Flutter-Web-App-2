@@ -1,4 +1,4 @@
-import 'dart:math' as math; // Import the math library for max function
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import './change_page_button.dart';
 
@@ -9,20 +9,15 @@ class ContactPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Determine a scalable font size with min and max limits for the form title
-        double fontSize = (constraints.maxWidth * 0.08).clamp(30.0, 50.0);
-
-        // Set the container width to 30vw or a minimum of 350 pixels
-        double containerWidth = math.max(constraints.maxWidth * 0.3, 350.0);
-
-        // Calculate the padding in vh units
-        double verticalPadding = constraints.maxHeight * 0.02;
+        double vh = MediaQuery.of(context).size.height / 100;
+        double vw = MediaQuery.of(context).size.width / 100;
+        double containerWidth = math.max(30 * vw, 350.0);
+        double verticalPadding = 2 * vh;
 
         return Center(
           child: Container(
-            margin: const EdgeInsets.only(top: 50.0), // Add 30px top margin
-            width:
-                containerWidth, // Set the width to 30vw or 350px, whichever is larger
+            margin: const EdgeInsets.only(top: 50.0),
+            width: containerWidth,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -37,31 +32,29 @@ class ContactPageContent extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Name*',
                           labelStyle: const TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           filled: true,
                           fillColor: Colors.black.withOpacity(0.5),
                         ),
                         style: const TextStyle(color: Colors.white),
                       ),
-                      SizedBox(
-                          height:
-                              verticalPadding), // Space between fields (1vh)
+                      SizedBox(height: verticalPadding),
 
                       // Email field
                       TextFormField(
                         decoration: InputDecoration(
                           labelText: 'Email*',
                           labelStyle: const TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           filled: true,
                           fillColor: Colors.black.withOpacity(0.5),
@@ -76,11 +69,11 @@ class ContactPageContent extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Company',
                           labelStyle: const TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           filled: true,
                           fillColor: Colors.black.withOpacity(0.5),
@@ -94,11 +87,11 @@ class ContactPageContent extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Message*',
                           labelStyle: const TextStyle(color: Colors.white),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.white),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
                           ),
                           filled: true,
                           fillColor: Colors.black.withOpacity(0.5),
@@ -108,9 +101,8 @@ class ContactPageContent extends StatelessWidget {
                       ),
                       SizedBox(height: verticalPadding),
 
-                      // Center the ChangePageButton to respect its width
-                      Center(
-                        child: const ChangePageButton(
+                      const Center(
+                        child: ChangePageButton(
                           buttonText: 'Submit',
                           pageToChangeTo: 'Contact',
                         ),

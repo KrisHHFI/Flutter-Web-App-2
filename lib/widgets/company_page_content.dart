@@ -9,13 +9,10 @@ class CompanyPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double mainTextfontSize =
-            (constraints.maxWidth * 0.02).clamp(50.0, 70.0);
-
-        double subTextfontSize =
-            (constraints.maxWidth * 0.02).clamp(15.0, 20.0);
-
-        double horizontalSpacing = constraints.maxWidth * 0.07;
+        double vw = MediaQuery.of(context).size.width / 100;
+        double mainTextfontSize = (2 * vw).clamp(50.0, 70.0);
+        double subTextfontSize = (2 * vw).clamp(15.0, 20.0);
+        double horizontalSpacing = 7 * vw;
 
         return Center(
           child: Column(
