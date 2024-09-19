@@ -1,6 +1,8 @@
 # Flutter Web App 2
 
 <img src="images/FlutterPromo1.png"/>
+<img src="images/FlutterPromo2.gif"/>
+<img src="images/FlutterPromo3.gif"/>
 
 <br>
 
