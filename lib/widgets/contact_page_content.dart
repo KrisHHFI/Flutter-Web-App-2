@@ -99,7 +99,6 @@ class ContactPageContent extends StatelessWidget {
                         style: const TextStyle(color: Colors.white),
                         maxLines: 2, // Multi-line text field for the message
                       ),
-                      SizedBox(height: verticalPadding),
 
                       const Center(
                         child: ChangePageButton(

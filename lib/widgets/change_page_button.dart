@@ -21,10 +21,12 @@ class _ChangePageButtonState extends State<ChangePageButton> {
 
   @override
   Widget build(BuildContext context) {
-    double verticalPadding = MediaQuery.of(context).size.height * 0.02;
+    double vh = MediaQuery.of(context).size.height / 100;
+    double vw = MediaQuery.of(context).size.width / 100;
+    double topPadding = 2 * vh;
 
     return Padding(
-      padding: EdgeInsets.only(top: verticalPadding),
+      padding: EdgeInsets.only(top: topPadding),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         onEnter: (_) => setState(() => _isHovered = true),
